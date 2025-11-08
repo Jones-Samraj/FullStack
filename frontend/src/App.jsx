@@ -30,7 +30,7 @@ export default function App() {
       .then((res) => res.json())
       .then((data) => {
         setUsers(users.filter((u) => u.id !== id));
-        console.log("deleted");
+        console.log(data.message);
       })
       .catch((err) => console.error("Delete error:", err));
   };
@@ -45,7 +45,7 @@ export default function App() {
         setUsers(users.map((u) => (u.id === editId ? { ...u, ...form } : u)));
         setEditId(null);
         setForm({ name: "", email: "" });
-        console.log("updated successfully");
+        console.log(res.data.message);
       } else {
         // CREATE
         const res = await API.post("/users", form);
